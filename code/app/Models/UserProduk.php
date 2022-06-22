@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produk_SMS extends Model
+class UserProduk extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'harga',
-        'masa_berlaku',
-        'jumlah_sms',
-        'produk_id'
-
+        'user_id',
+        'produk_id',
+        'tanggal_berakhir',
     ];
 
     public function produk() {
         return $this->belongsTo('App\Models\Produk');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
     }
 }

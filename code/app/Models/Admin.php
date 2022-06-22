@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Produk;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -26,13 +26,5 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    public function pembayaran() {
-        return $this->hasmany('App\Models\Pembayaran');
-    }
-
-    public function userProduk() {
-        return $this->hasmany('App\Models\UserProduk');
-    }
 
 }

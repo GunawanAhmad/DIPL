@@ -14,5 +14,10 @@ class Produk_Tel extends Model
         'harga',
         'masa_berlaku',
         'jumlah_menit',
+        'produk_id'
     ];
+
+    public function produk() {
+        return $this->belongsTo('App\Models\Produk');
+    }
 }

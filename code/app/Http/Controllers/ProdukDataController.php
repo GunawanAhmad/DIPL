@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Produk_Data;
 use App\Http\Requests\StoreProduk_DataRequest;
 use App\Http\Requests\UpdateProduk_DataRequest;
+use App\Models\Produk;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class ProdukDataController extends Controller
 {
@@ -31,8 +32,14 @@ class ProdukDataController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-        Produk_Data::create($request->all());
+    {   
+        $produk = Produk::create($request->all());
+        Produk_Data::create(
+            [
+                'jumlah_data' => $request->jumlah_data,
+                'produk_id' => $produk->id,
+            ]
+        );
         return redirect('/admin');
     }
 

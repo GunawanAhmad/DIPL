@@ -2,32 +2,23 @@
 
 namespace App\Models;
 
-
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 
 class Pembayaran extends Model
 {
-    use HasApiTokens;
+    use HasFactory;
 
-    private $product_id;
-    private $jenisPembayaran;
-    private $listHarga;
-    private $JenisPaket;
-    private $userid;
-    private $id_proudct;
-    
-    
+    protected $fillable = [
+        'user_id',
+        'produk_id',
+    ];
 
-
-    //setter
-    function viewHarga( )
-    {
-
+    public function produk() {
+        return $this->belongsTo('App\Models\Produk');
     }
-    function choosePayment( )
-    {
 
+    public function user() {
+        return $this->belongsTo('App\Models\User');
     }
 }

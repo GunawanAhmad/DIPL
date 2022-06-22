@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -18,7 +18,7 @@ class RegisterController extends Controller
             'password' => 'required'
         ]);
         $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create(array_merge($validatedData, ['role' => 'admin']));
+        Admin::create($validatedData);
         return redirect('/login');
     }
 }

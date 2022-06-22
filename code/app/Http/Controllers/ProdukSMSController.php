@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk_SMS;
 use App\Http\Requests\StoreProduk_SMSRequest;
 use App\Http\Requests\UpdateProduk_SMSRequest;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 
@@ -31,7 +32,13 @@ class ProdukSMSController extends Controller
      */
     public function create(Request $request)
     {
-        Produk_SMS::create($request->all());
+        $produk = Produk::create($request->all());
+        Produk_SMS::create(
+            [
+                'jumlah_sms' => $request->jumlah_sms,
+                'produk_id' => $produk->id,
+            ]
+        );
         return redirect('/admin');
     }
 

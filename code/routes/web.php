@@ -20,21 +20,26 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/admin', [DashboardController::class, 'admin'])->middleware('auth');
-
-Route::get('/tambah-data', [ProdukDataController::class, 'tambah_data_view']);
-Route::post('/tambah-data', [ProdukDataController::class, 'create']);
-
-Route::get('/tambah-tel', [ProdukTelController::class, 'tambah_tel_view']);
-Route::post('/tambah-tel', [ProdukTelController::class, 'create']);
-
-Route::get('/tambah-sms', [ProdukSMSController::class, 'tambah_sms_view']);
-Route::post('/tambah-sms', [ProdukSMSController::class, 'create']);
 
 
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'index'])->name('admin.register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+
+Route::group(['middleware' => ['auth:admin']], function() {
+    Route::get('/admin', [DashboardController::class, 'admin']);
+
+    Route::get('/tambah-data', [ProdukDataController::class, 'tambah_data_view']);
+    Route::post('/tambah-data', [ProdukDataController::class, 'create']);
+
+    Route::get('/tambah-tel', [ProdukTelController::class, 'tambah_tel_view']);
+    Route::post('/tambah-tel', [ProdukTelController::class, 'create']);
+
+    Route::get('/tambah-sms', [ProdukSMSController::class, 'tambah_sms_view']);
+    Route::post('/tambah-sms', [ProdukSMSController::class, 'create']);
+});

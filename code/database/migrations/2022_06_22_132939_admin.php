@@ -15,11 +15,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produk__tels', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('produk_id')->unsigned();
-            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('restrict');
-            $table->double('jumlah_menit');
+            $table->string('nama');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
         });
     }
@@ -32,7 +32,7 @@ return new class extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('produk__tels');
+        Schema::dropIfExists('admins');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produk_Tel;
 use App\Http\Requests\StoreProduk_TelRequest;
 use App\Http\Requests\UpdateProduk_TelRequest;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 
@@ -31,7 +32,13 @@ class ProdukTelController extends Controller
      */
     public function create(Request $request)
     {
-        Produk_Tel::create($request->all());
+        $produk = Produk::create($request->all());
+        Produk_Tel::create(
+            [
+                'jumlah_menit' => $request->jumlah_menit,
+                'produk_id' => $produk->id,
+            ]
+        );
         return redirect('/admin');
     }
 

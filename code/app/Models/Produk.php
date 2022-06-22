@@ -8,21 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     use HasFactory;
-    private $produk_id;
-    
 
-    //setter
-    function set_produk_id($produk_id) {
-        $this->produk_id = $produk_id;
+    protected $fillable = [
+        'nama',
+        'harga',
+        'masa_berlaku',
+    ];
+
+    public function produkData() {
+        return $this->hasOne('App\Models\Produk_Data');
     }
 
-    
-    
+    public function produkTel() {
+        return $this->hasOne('App\Models\Produk_Tel');
+    }
 
+    public function produkSms() {
+        return $this->hasOne('App\Models\Produk_SMS');
+    }
 
-    //getter
-    function get_produk_id() {
-        return $this->produk_id;
+    public function pembayaran() {
+        return $this->hasmany('App\Models\Pembayaran');
     }
 
 }

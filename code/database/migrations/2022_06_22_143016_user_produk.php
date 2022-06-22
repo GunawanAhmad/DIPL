@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-
 return new class extends Migration
 {
     /**
@@ -15,11 +14,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('produk__tels', function (Blueprint $table) {
+        Schema::create('user_produks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('produk_id')->unsigned();
-            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('restrict');
-            $table->double('jumlah_menit');
+            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('tanggal_berakhir');
             $table->timestamps();
         });
     }
@@ -32,7 +33,7 @@ return new class extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('produk__tels');
+        Schema::dropIfExists('user_produks');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

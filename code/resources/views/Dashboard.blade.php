@@ -43,23 +43,24 @@
                     </thead>
                     <tbody>
                         @foreach ($data as $item)
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>Rp. {{ $item->harga }}</td>
+                                <td>{{ $item->jumlah_data }} MB</td>
+                                <td>{{ $item->masa_berlaku }} Hari</td>
+                                <td>
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->created_at }}</td>
-                            <td>Rp. {{ $item->harga }}</td>
-                            <td>{{ $item->jumlah_data }} MB</td>
-                            <td>{{ $item->masa_berlaku }} Hari</td>
-                            <td>
-                                <button type="button" class="btn btn-success">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

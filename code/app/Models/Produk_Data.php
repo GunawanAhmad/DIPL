@@ -14,5 +14,10 @@ class Produk_Data extends Model
         'harga',
         'masa_berlaku',
         'jumlah_data',
+        'produk_id'
     ];
+
+    public function produk() {
+        return $this->belongsTo('App\Models\Produk');
+    }
 }
