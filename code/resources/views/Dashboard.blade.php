@@ -1,3 +1,4 @@
+@extends('sidebar')
 <html lang="en">
 
 <head>
