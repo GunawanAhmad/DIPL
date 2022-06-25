@@ -14,10 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_produks', function (Blueprint $table) {
+        Schema::create('user_sms_produks', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('produk_id')->unsigned();
-            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade');
+            $table->foreign('produk_id')->references('id')->on('produk__s_m_s')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('tanggal_berakhir');
@@ -33,7 +33,7 @@ return new class extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Schema::dropIfExists('user_produks');
+        Schema::dropIfExists('user_sms_produks');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };

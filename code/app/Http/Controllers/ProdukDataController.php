@@ -23,7 +23,7 @@ class ProdukDataController extends Controller
     }
 
     public function tambah_data_view() {
-        return View('Tambah_paket_data');
+        return View('admin/Tambah_paket_data');
     }
 
     /**

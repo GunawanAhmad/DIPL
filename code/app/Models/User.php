@@ -16,6 +16,7 @@ class User extends Authenticatable
         'nama',
         'email',
         'password',
+        'saldo'
     ];
 
     /**
@@ -31,8 +32,16 @@ class User extends Authenticatable
         return $this->hasmany('App\Models\Pembayaran');
     }
 
-    public function userProduk() {
-        return $this->hasmany('App\Models\UserProduk');
+    public function userDataProduk() {
+        return $this->hasmany('App\Models\UserDataProduk');
+    }
+
+    public function userTelProduk() {
+        return $this->hasmany('App\Models\UserTelProduk');
+    }
+
+    public function userSmsProduk() {
+        return $this->hasmany('App\Models\UserSmsProduk');
     }
 
 }

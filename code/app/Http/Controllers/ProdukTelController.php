@@ -22,7 +22,7 @@ class ProdukTelController extends Controller
     }
 
     public function tambah_tel_view() {
-        return View('Tambah_paket_tel');
+        return View('admin/Tambah_paket_tel');
     }
 
     /**

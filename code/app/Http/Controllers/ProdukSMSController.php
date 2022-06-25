@@ -22,7 +22,7 @@ class ProdukSMSController extends Controller
     }
 
     public function tambah_sms_view() {
-        return View('Tambah_paket_sms');
+        return View('admin/Tambah_paket_sms');
     }
 
     /**

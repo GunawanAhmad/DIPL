@@ -15,24 +15,18 @@
             justify-content: center;
             align-items: center;
         }
-
     </style>
 </head>
 
 <body>
     <div class="container col-3 ">
-
-        <form action="/register" method="POST">
+        <h1 class="text-center">User</h1>
+        <form action="/login/user" method="POST">
             @csrf
             <!-- Email input -->
             <div class="form-outline mb-4">
-                <label class="form-label" for="loginName">Email</label>
-                <input type="email" id="loginName" class="form-control" name="email" required />
-            </div>
-
-            <div class="form-outline mb-4">
-                <label class="form-label" for="nama">Nama</label>
-                <input type="text" id="nama" class="form-control" name="nama" required />
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" class="form-control" name="email" required />
             </div>
 
             <!-- Password input -->
@@ -42,11 +36,11 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="submit    " class="btn btn-primary btn-block mb-4">Sign in</button>
 
             <!-- Register buttons -->
             <div class="text-center">
-                <p>Already a member? <a href="/login">Login</a></p>
+                <p>Not a member? <a href="/register/user">Register</a></p>
             </div>
         </form>
     </div>
