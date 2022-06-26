@@ -43,59 +43,12 @@ class ProdukDataController extends Controller
         return redirect('/admin');
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \App\Http\Requests\StoreProduk_DataRequest  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(StoreProduk_DataRequest $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Produk_Data  $produk_Data
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Produk_Data $produk_Data)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Produk_Data  $produk_Data
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Produk_Data $produk_Data)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \App\Http\Requests\UpdateProduk_DataRequest  $request
-    //  * @param  \App\Models\Produk_Data  $produk_Data
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(UpdateProduk_DataRequest $request, Produk_Data $produk_Data)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Produk_Data  $produk_Data
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Produk_Data $produk_Data)
-    // {
-    //     //
-    // }
+    public function delete(Request $request) {
+        Log::info("dad");
+        $id = $request->route('id');
+        $produk_data = Produk_Data::find($id);
+        Produk_Data::destroy($id);
+        Produk::destroy($produk_data->produk_id);
+        return redirect('/admin');
+    }
 }

@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="user">Home</a>
+                        <a class="nav-link active" aria-current="page" href="user">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="user/daftar-produk">Daftar produk</a>
@@ -86,7 +86,7 @@
                                 <td>{{ $item->tanggal_berakhir }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success">
-                                        <a href="/user/pembayaran/data/{{ $item->produk_id }}">Beli</a>
+                                        <a href="/user/pembayaran/data/{{ $item->produk_id }}">Beli lagi</a>
                                     </button>
                                 </td>
                             </tr>
@@ -112,12 +112,12 @@
                     <tbody>
                         @foreach ($tel as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->tanggal_berakhir }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success">
-                                        <a href="/user/pembayaran/tel/{{ $item->produk_id }}">Beli</a>
+                                        <a href="/user/pembayaran/tel/{{ $item->produk_id }}">Beli lagi</a>
                                     </button>
                                 </td>
                             </tr>
@@ -144,12 +144,12 @@
                     <tbody>
                         @foreach ($sms as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->tanggal_berakhir }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success">
-                                        <a href="/user/pembayaran/sms/{{ $item->produk_id }}">Beli</a>
+                                        <a href="/user/pembayaran/sms/{{ $item->produk_id }}">Beli lagi</a>
                                     </button>
                                 </td>
                             </tr>

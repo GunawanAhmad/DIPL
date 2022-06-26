@@ -34,6 +34,8 @@ Route::post('/register/admin', [RegisterController::class, 'register_admin']);
 
 Route::group(['middleware' => ['auth:admin']], function() {
     Route::get('/admin', [DashboardController::class, 'admin']);
+    Route::get('/admin/riwayat-pembayaran', [PembayaranController::class, 'getPembayaranAll']);
+    Route::post('/admin/logout', [LoginController::class, 'logout_admin']);
 
     Route::get('/tambah-data', [ProdukDataController::class, 'tambah_data_view']);
     Route::post('/tambah-data', [ProdukDataController::class, 'create']);
@@ -43,6 +45,11 @@ Route::group(['middleware' => ['auth:admin']], function() {
 
     Route::get('/tambah-sms', [ProdukSMSController::class, 'tambah_sms_view']);
     Route::post('/tambah-sms', [ProdukSMSController::class, 'create']);
+
+    Route::post('/hapus-data/{id}', [ProdukDataController::class, 'delete']);
+    Route::post('/hapus-sms/{id}', [ProdukSMSController::class, 'delete']);
+    Route::post('/hapus-tel/{id}', [ProdukTelController::class, 'delete']);
+
 });
 
 

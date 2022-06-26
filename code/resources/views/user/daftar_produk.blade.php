@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/user">Home</a>
+                        <a class="nav-link " aria-current="page" href="/user">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="daftar-produk">Daftar produk</a>
@@ -79,7 +79,7 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>
@@ -117,7 +117,7 @@
                     <tbody>
                         @foreach ($tel as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>
@@ -154,7 +154,7 @@
                     <tbody>
                         @foreach ($sms as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>

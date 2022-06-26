@@ -42,7 +42,7 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+            <button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
 
             <!-- Register buttons -->
             <div class="text-center">

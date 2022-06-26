@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembayaran;
 use App\Models\Produk;
 use App\Models\Produk_Data;
 use App\Models\Produk_SMS;
@@ -46,6 +47,10 @@ class PembayaranController extends Controller
             'user_id' => $user->id,
             'tanggal_berakhir' => $date
         ]);
+        Pembayaran::create([
+            'user_id' => $user->id,
+            'produk_id' =>$produk->id
+        ]);
         return redirect('/user');
     }
 
@@ -61,6 +66,10 @@ class PembayaranController extends Controller
             'produk_id' => $id,
             'user_id' => $user->id,
             'tanggal_berakhir' => $date
+        ]);
+        Pembayaran::create([
+            'user_id' => $user->id,
+            'produk_id' =>$produk->id
         ]);
         return redirect('/user');
     }
@@ -78,7 +87,17 @@ class PembayaranController extends Controller
             'user_id' => $user->id,
             'tanggal_berakhir' => $date
         ]);
+        Pembayaran::create([
+            'user_id' => $user->id,
+            'produk_id' =>$produk->id
+        ]);
         return redirect('/user');
+    }
+
+    public function getPembayaranAll() {
+        $data = Pembayaran::select('users.email', 'pembayarans.*', 'produks.nama as nama_paket', 'produks.harga')->join('produks', 'produks.id', 'pembayarans.produk_id')->join('users', 'users.id', 'pembayarans.user_id')->get();
+        
+        return View('admin/riwayat_pembayaran', ['data' => $data]);
     }
 
 }

@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class DashboardController extends Controller
 {
     function admin() {
-        $data = Produk_Data::select('produks.*', 'produk__data.jumlah_data')->join('produks', 'produk__data.produk_id', 'produks.id')->get();
+        $data = Produk_Data::select('produks.nama','produks.masa_berlaku', 'produks.harga','produk__data.*')->join('produks', 'produk__data.produk_id', 'produks.id')->get();
 
-        $tel = Produk_Tel::select('produks.*', 'produk__tels.jumlah_menit')->join('produks', 'produk__tels.produk_id', 'produks.id')->get();
+        $tel = Produk_Tel::select('produks.nama','produks.masa_berlaku', 'produks.harga', 'produk__tels.*')->join('produks', 'produk__tels.produk_id', 'produks.id')->get();
 
-        $sms = Produk_SMS::select('produks.*', 'produk__s_m_s.jumlah_sms')->join('produks', 'produk__s_m_S.produk_id', 'produks.id')->get();
+        $sms = Produk_SMS::select('produks.nama','produks.masa_berlaku', 'produks.harga', 'produk__s_m_s.*')->join('produks', 'produk__s_m_S.produk_id', 'produks.id')->get();
         
         return view('admin/Dashboard', ['data' => $data, 'tel' => $tel, 'sms' => $sms]);
     }

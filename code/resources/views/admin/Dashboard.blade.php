@@ -24,7 +24,30 @@
 </head>
 
 <body>
-    <h1 class="text-center">Dashboard</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/riwayat-pembayaran">Riwayat pembayaran</a>
+                    </li>
+                </ul>
+                <form class="mb-0 cursor-pointer" action="/admin/logout" method="post">
+                    @csrf
+                    <button class="dropdown-item" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <h1 class="text-center mt-5">Dashboard</h1>
     <div class="container">
         <h4>Daftar paket Data</h4>
         <div class="row">
@@ -44,19 +67,19 @@
                     <tbody>
                         @foreach ($data as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>
                                 <td>{{ $item->jumlah_data }} MB</td>
                                 <td>{{ $item->masa_berlaku }} Hari</td>
                                 <td>
-                                    <button type="button" class="btn btn-success">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
+                                    <form action="/hapus-data/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -88,19 +111,19 @@
                     <tbody>
                         @foreach ($tel as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>
                                 <td>{{ $item->jumlah_data }} Menit</td>
                                 <td>{{ $item->masa_berlaku }} Hari</td>
                                 <td>
-                                    <button type="button" class="btn btn-success">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
+                                    <form action="/hapus-tel/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -131,19 +154,19 @@
                     <tbody>
                         @foreach ($sms as $item)
                             <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{{ $loop->index + 1 }}</th>
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>Rp. {{ $item->harga }}</td>
                                 <td>{{ $item->jumlah_data }} SMS</td>
                                 <td>{{ $item->masa_berlaku }} Hari</td>
                                 <td>
-                                    <button type="button" class="btn btn-success">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-danger">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
+                                    <form action="/hapus-sms/{{ $item->id }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                         @endforeach
                         </tr>
@@ -155,4 +178,7 @@
             <a href="/tambah-sms" class="btn-primary">Tambah paket sms</a>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produk_Tel;
-use App\Http\Requests\StoreProduk_TelRequest;
-use App\Http\Requests\UpdateProduk_TelRequest;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -42,59 +40,11 @@ class ProdukTelController extends Controller
         return redirect('/admin');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProduk_TelRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(StoreProduk_TelRequest $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\Models\Produk_Tel  $produk_Tel
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Produk_Tel $produk_Tel)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  \App\Models\Produk_Tel  $produk_Tel
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Produk_Tel $produk_Tel)
-    // {
-    //     //
-    // }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProduk_TelRequest  $request
-     * @param  \App\Models\Produk_Tel  $produk_Tel
-     * @return \Illuminate\Http\Response
-     */
-    // public function update(UpdateProduk_TelRequest $request, Produk_Tel $produk_Tel)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  \App\Models\Produk_Tel  $produk_Tel
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy(Produk_Tel $produk_Tel)
-    // {
-    //     //
-    // }
+    public function delete(Request $request) {
+        $id = $request->route('id');
+        $produk_data = Produk_Tel::find($id);
+        Produk_Tel::destroy($id);
+        Produk::destroy($produk_data->produk_id);
+        return redirect('/admin');
+    }
 }
